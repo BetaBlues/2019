@@ -68,7 +68,7 @@ public class Robot extends TimedRobot {
 	//for field pieces, right is true, left is false
 	
 	//digital inputs
-	final double speedScalingFactor = 0.9;
+	final double speedScalingFactor = 0.6;
 	double lowSpeed = 0.2;
 	double mediumSpeed = 0.3;
 	double highSpeed = 0.6;
@@ -81,8 +81,8 @@ public class Robot extends TimedRobot {
 
 	boolean limelightButtonState = false;
 
-	double maxSpeed = 0.5; // max speed for the limelight fucntion
-	double minSpeed = 0.3; // min speed for the limelight fuction
+	double maxSpeed = 0.65; // max speed for the limelight fucntion
+	double minSpeed = 0.6; // min speed for the limelight fuction
 	int runTime; //number of cycles function has gone through
 	
 	boolean sandstormStartState = false; //the state of the button to start sandstorm 
@@ -293,14 +293,15 @@ public class Robot extends TimedRobot {
 				myRobot.arcadeDrive(0.0,0.0);
 				if (x){ //"i" and "x" are placeholders
 					if (i < 30){
-						myRobot.arcadeDrive(0.3,0.5);
+						myRobot.arcadeDrive(0.3,-0.5);
 						//hatchMotor.set(-0.3);
 						i += 1;
 					}
 					x = false;
 				}
 			}else{
-				myRobot.arcadeDrive(Math.max((((maxSpeed-minSpeed)*((10-targetArea)/10))+minSpeed), minSpeed), -horizonalOffset*KpL);
+				double scaledSpeed = ((maxSpeed-minSpeed)*((10-targetArea)/10)) + minSpeed;
+				myRobot.arcadeDrive(Math.max(scaledSpeed, minSpeed), -horizonalOffset*KpL);
 			}
 		}
 		x = true;
