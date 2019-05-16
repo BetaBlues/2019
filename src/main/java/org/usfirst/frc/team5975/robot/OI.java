@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team5975.robot;
 
+import org.usfirst.frc.team5975.robot.commands.PistonToggle;
+import org.usfirst.frc.team5975.robot.subsystems.Piston;
+
 import edu.wpi.first.wpilibj.XboxController;
 import org.usfirst.frc.team5975.robot.Example;
 
@@ -15,8 +18,8 @@ import org.usfirst.frc.team5975.robot.Example;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  int hatchID = 3; //X button
-  /*
+ 
+  
   int joyPort1=0; //driver xbox controller
   int joyPort2=1; //manipulator xbox controller
   
@@ -31,11 +34,11 @@ public class OI {
 	XboxController manipController;
 	
 	//Manipulator Controls
-	//int limelightID= 2; //B button
+	int limelightID= 2; //B button
 	int hatchID = 3; //X button
-//	int linearMotionID = 4; //Y button
-//	int frontLegsID = 5; //left Bumper
-	//int backLegsID = 6; //right Bumper
+	int linearMotionID = 4; //Y button
+	int frontLegsID = 5;//left Bumper
+	int backLegsID = 6; //right Bumper
 	//verify that stick1 and stick2 correspond to the left and right joysticks on the controller
   //6 is right, 5 is left
   
@@ -69,6 +72,8 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand()); 
-  */
- // hatchID.whenReleased(new PistonToggle.PistonToggle(Example.hatchPiston)); 
+  
+  
+  
+
 }
