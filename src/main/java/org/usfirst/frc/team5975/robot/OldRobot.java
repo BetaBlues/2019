@@ -1,4 +1,5 @@
 package org.usfirst.frc.team5975.robot;
+//import org.usfirst.frc.team5975.robot.subsystems.Piston;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -18,7 +19,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 //import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class Robot extends TimedRobot {
+public class OldRobot extends TimedRobot {
 	
 	public Gyro gyro;
 	double KpG = 0.03;
@@ -36,7 +37,7 @@ public class Robot extends TimedRobot {
 	// RoboRio mapping
 	int leftMotorChannel=1;
 	int rightMotorChannel=2;
-	int hatchMotorChannel=3;
+	int hatchMotorChannel=0;
 	DriverStation ds = DriverStation.getInstance();
 	
 	// Driver Station / controller mapping
@@ -68,7 +69,7 @@ public class Robot extends TimedRobot {
 	//for field pieces, right is true, left is false
 	
 	//digital inputs
-	final double speedScalingFactor = 0.6;
+	final double speedScalingFactor = 0.9;
 	double lowSpeed = 0.2;
 	double mediumSpeed = 0.3;
 	double highSpeed = 0.6;
@@ -81,8 +82,8 @@ public class Robot extends TimedRobot {
 
 	boolean limelightButtonState = false;
 
-	double maxSpeed = 0.65; // max speed for the limelight fucntion
-	double minSpeed = 0.6; // min speed for the limelight fuction
+	double maxSpeed = 0.5; // max speed for the limelight fucntion
+	double minSpeed = 0.3; // min speed for the limelight fuction
 	int runTime; //number of cycles function has gone through
 	
 	boolean sandstormStartState = false; //the state of the button to start sandstorm 
@@ -293,15 +294,14 @@ public class Robot extends TimedRobot {
 				myRobot.arcadeDrive(0.0,0.0);
 				if (x){ //"i" and "x" are placeholders
 					if (i < 30){
-						myRobot.arcadeDrive(0.3,-0.5);
+						myRobot.arcadeDrive(0.3,0.5);
 						//hatchMotor.set(-0.3);
 						i += 1;
 					}
 					x = false;
 				}
 			}else{
-				double scaledSpeed = ((maxSpeed-minSpeed)*((10-targetArea)/10)) + minSpeed;
-				myRobot.arcadeDrive(Math.max(scaledSpeed, minSpeed), -horizonalOffset*KpL);
+				myRobot.arcadeDrive(Math.max((((maxSpeed-minSpeed)*((10-targetArea)/5))+minSpeed), minSpeed), -horizonalOffset*KpL);
 			}
 		}
 		x = true;
